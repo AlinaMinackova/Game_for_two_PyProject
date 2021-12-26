@@ -29,6 +29,19 @@ def load_image(name, colorkey=None):
         image = image.convert_alpha()
     return image
 
+
+class Fon(pygame.sprite.Sprite):
+
+    def __init__(self, image):
+        super().__init__(fon, all_sprites)
+        image = load_image(image)
+        self.image = image
+        self.rect = self.image.get_rect()
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect.bottom = height
+
+
+Fon("forest.png")
 running = True
 play = True
 while running:
@@ -37,6 +50,7 @@ while running:
             running = False
     pressed_keys = pygame.key.get_pressed()
     screen.fill(pygame.Color("black"))
+    fon.draw(screen)
     pygame.display.flip()
     clock.tick(50)
 pygame.quit()
