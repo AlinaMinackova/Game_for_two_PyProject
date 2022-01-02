@@ -43,6 +43,9 @@ boys_left = [load_image('left.png'), load_image('left2.png'), load_image('left.p
              load_image('left2.png')]
 boys_right = [load_image('right.png'), load_image('right2.png'), load_image('right.png'),
              load_image('right3.png')]
+cris2_img = [load_image('cris_2.png'), load_image('cris22.png'), load_image('cris23.png'),
+             load_image('cris24.png'), load_image('cris25.png'), load_image('cris26.png'),
+            load_image('cris27.png'), load_image('cris28.png')]
 
 
 class PlayerFirst(pygame.sprite.Sprite):
@@ -229,8 +232,31 @@ class Cris(pygame.sprite.Sprite):
         self.count += 1
 
 
+class Cris2(pygame.sprite.Sprite):
+    def __init__(self, image, x, y):
+        super().__init__(cris_group2, all_sprites)
+        image = load_image(image, -1)
+        self.image = image
+        self.rect = self.image.get_rect()
+        self.count = 0
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect.x = x
+        self.rect.y = y
+
+    def animated(self):
+        if self.count == 40:
+            self.count = 0
+
+        self.image = cris2_img[self.count // 5]
+        self.count += 1
+
+
 cris = []
+cris2 = []
 list_cr_gl = []
+list_cr_mn = []
+for i in list_cr_mn:
+    cris2.append(Cris2("cris2.png", i[0], i[1]))
 for i in list_cr_gl:
     cris.append(Cris("cris.png", i[0], i[1]))
 first = PlayerFirst(40, 461)
