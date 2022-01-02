@@ -4,11 +4,6 @@ import os
 import sys
 from pygame.locals import *
 
-
-platform_ground = pygame.sprite.Group()
-ground_im = pygame.sprite.Group()
-
-
 pygame.init()
 size = width, height = 750, 550
 screen = pygame.display.set_mode(size)
@@ -16,6 +11,10 @@ clock = pygame.time.Clock()
 all_sprites = pygame.sprite.Group()
 fon = pygame.sprite.Group()
 playerfirst = pygame.sprite.Group()
+platform_ground = pygame.sprite.Group()
+ground_im = pygame.sprite.Group()
+gates_group = pygame.sprite.Group()
+gates_group2 = pygame.sprite.Group()
 
 
 def load_image(name, colorkey=None):
@@ -59,6 +58,28 @@ class Platform(pygame.sprite.Sprite):
 class Ground(pygame.sprite.Sprite):
     def __init__(self, image, x, y):
         super().__init__(ground_im, all_sprites)
+        image = load_image(image, -1)
+        self.image = image
+        self.rect = self.image.get_rect()
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect.x = x
+        self.rect.y = y
+
+
+class Gates(pygame.sprite.Sprite):
+    def __init__(self, image, x, y):
+        super().__init__(gates_group, all_sprites)
+        image = load_image(image, -1)
+        self.image = image
+        self.rect = self.image.get_rect()
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect.x = x
+        self.rect.y = y
+
+
+class Gates2(pygame.sprite.Sprite):
+    def __init__(self, image, x, y):
+        super().__init__(gates_group2, all_sprites)
         image = load_image(image, -1)
         self.image = image
         self.rect = self.image.get_rect()
