@@ -5,6 +5,10 @@ import sys
 from pygame.locals import *
 
 
+platform_ground = pygame.sprite.Group()
+ground_im = pygame.sprite.Group()
+
+
 pygame.init()
 size = width, height = 750, 550
 screen = pygame.display.set_mode(size)
@@ -41,6 +45,17 @@ class Fon(pygame.sprite.Sprite):
         self.rect.bottom = height
 
 
+class Platform(pygame.sprite.Sprite):
+    def __init__(self, image, x, y):
+        super().__init__(platform_ground, all_sprites)
+        image = load_image(image, -1)
+        self.image = image
+        self.rect = self.image.get_rect()
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect.x = x
+        self.rect.y = y
+
+
 Fon("forest.png")
 running = True
 play = True
@@ -54,3 +69,8 @@ while running:
     pygame.display.flip()
     clock.tick(50)
 pygame.quit()
+
+
+def terminate():
+    pygame.quit()
+    sys.exit()
