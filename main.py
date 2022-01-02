@@ -39,6 +39,10 @@ girl_right = [load_image('right_g.png'), load_image('right2_g.png'), load_image(
 cris_img = [load_image('cris.png'), load_image('cris2.png'), load_image('cris3.png'),
              load_image('cris4.png'), load_image('cris5.png'), load_image('cris6.png'),
             load_image('cris7.png'), load_image('cris8.png')]
+boys_left = [load_image('left.png'), load_image('left2.png'), load_image('left.png'),
+             load_image('left2.png')]
+boys_right = [load_image('right.png'), load_image('right2.png'), load_image('right.png'),
+             load_image('right3.png')]
 
 
 class PlayerFirst(pygame.sprite.Sprite):
@@ -123,6 +127,89 @@ class PlayerFirst(pygame.sprite.Sprite):
         self.count += 1
 
 
+class PlayerSecond(pygame.sprite.Sprite):
+    image = load_image("boy.png", colorkey=-1)
+
+    def __init__(self, x, y):
+        super().__init__(playersecond, all_sprites)
+        self.image = PlayerSecond.image
+        self.pol = y
+        self.count = 0
+        self.isJump = False
+        self.jumpCount = 12
+        self.jumpCount1 = 0
+        self.rect = self.image.get_rect()
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect.x = x
+        self.rect.y = self.pol
+
+    def move(self, pressed_keys):
+        global SCORE2
+        self.image = load_image("boy.png", colorkey=-1)
+        if pygame.sprite.spritecollide(self, cris_group2, True):
+            pygame.mixer.Sound.play(cris_sound)
+            SCORE2 += 10
+        if pressed_keys[K_d]:
+            self.rect.x += 4
+            if self.rect.x > 700:
+                self.rect.x -= 4
+            self.animated(boys_right)
+            if pygame.sprite.spritecollide(self, ground_im, False):
+                if 458 <= self.rect.y <= 463:
+                    self.rect.x -= 4
+        if pressed_keys[K_a]:
+            self.rect.x -= 4
+            if self.rect.x < -10:
+                self.rect.x += 4
+            self.animated(boys_left)
+            if pygame.sprite.spritecollide(self, ground_im, False):
+                if 458 <= self.rect.y <= 465:
+                    self.rect.x -= 4
+        if self.isJump:
+            if self.jumpCount > 0:
+                self.rect.y -= self.jumpCount
+                self.jumpCount -= 1
+            else:
+                self.down()
+        else:
+            if not pygame.sprite.spritecollide(self, platform_ground, False):
+                if not pygame.sprite.spritecollide(self, ground_im, False):
+                    self.isdown()
+
+    def down(self):
+        if pygame.sprite.spritecollide(self, platform_ground, False):
+            self.rect.y += 5
+            self.isJump = False
+            self.jumpCount = 12
+            self.jumpCount1 = 0
+
+        elif pygame.sprite.spritecollide(self, ground_im, False):
+            self.rect.y += 2
+            self.isJump = False
+            self.jumpCount = 12
+            self.jumpCount1 = 0
+
+        else:
+            if self.jumpCount1 <= 12:
+                self.rect.y += self.jumpCount1
+                self.jumpCount1 += 1
+            else:
+                self.isJump = False
+                self.jumpCount = 12
+                self.jumpCount1 = 0
+
+    def isdown(self):
+        if self.rect.y < self.pol:
+            self.rect.y += 5
+
+    def animated(self, img):
+        if self.count == 20:
+            self.count = 0
+
+        self.image = img[self.count // 5]
+        self.count += 1
+
+
 class Cris(pygame.sprite.Sprite):
     def __init__(self, image, x, y):
         super().__init__(cris_group, all_sprites)
@@ -147,6 +234,7 @@ list_cr_gl = []
 for i in list_cr_gl:
     cris.append(Cris("cris.png", i[0], i[1]))
 first = PlayerFirst(40, 461)
+second = PlayerSecond(0, 463)
 running = True
 play = True
 while running:
@@ -158,7 +246,9 @@ while running:
                 first.isJump = True
     pressed_keys = pygame.key.get_pressed()
     first.move(pressed_keys)
+    second.move(pressed_keys)
     screen.fill(pygame.Color("black"))
+    cris_group.draw(screen)
     playerfirst.draw(screen)
     pygame.display.flip()
     clock.tick(50)
