@@ -36,6 +36,9 @@ girl_left = [load_image('left_g.png'), load_image('left2_g.png'), load_image('le
              load_image('left2_g.png')]
 girl_right = [load_image('right_g.png'), load_image('right2_g.png'), load_image('right_g.png'),
              load_image('right3_g.png')]
+cris_img = [load_image('cris.png'), load_image('cris2.png'), load_image('cris3.png'),
+             load_image('cris4.png'), load_image('cris5.png'), load_image('cris6.png'),
+            load_image('cris7.png'), load_image('cris8.png')]
 
 
 class PlayerFirst(pygame.sprite.Sprite):
@@ -120,6 +123,29 @@ class PlayerFirst(pygame.sprite.Sprite):
         self.count += 1
 
 
+class Cris(pygame.sprite.Sprite):
+    def __init__(self, image, x, y):
+        super().__init__(cris_group, all_sprites)
+        image = load_image(image, -1)
+        self.image = image
+        self.rect = self.image.get_rect()
+        self.count = 0
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect.x = x
+        self.rect.y = y
+
+    def animated(self):
+        if self.count == 40:
+            self.count = 0
+
+        self.image = cris_img[self.count // 5]
+        self.count += 1
+
+
+cris = []
+list_cr_gl = []
+for i in list_cr_gl:
+    cris.append(Cris("cris.png", i[0], i[1]))
 first = PlayerFirst(40, 461)
 running = True
 play = True
