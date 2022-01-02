@@ -10,7 +10,6 @@ screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
 all_sprites = pygame.sprite.Group()
 fon = pygame.sprite.Group()
-playerfirst = pygame.sprite.Group()
 platform_ground = pygame.sprite.Group()
 ground_im = pygame.sprite.Group()
 gates_group = pygame.sprite.Group()
@@ -88,21 +87,33 @@ class Gates2(pygame.sprite.Sprite):
         self.rect.y = y
 
 
+def terminate():
+    pygame.quit()
+    sys.exit()
+
+
 Fon("forest.png")
+Gates("gates2.png", 500, 30)
+Gates2("gates.png", 580, 30)
+list_platforms = [[500, 375], [365, 300], [225, 230], [85, 160], [370, 160], [500, 90], [570, 90]]
+for i in list_platforms:
+    Platform("platform.png", i[0], i[1])
+Ground("ground.png", 635, 450)
 running = True
 play = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    pressed_keys = pygame.key.get_pressed()
+            sys.exit()
     screen.fill(pygame.Color("black"))
     fon.draw(screen)
+    gates_group.draw(screen)
+    gates_group2.draw(screen)
+    platform_ground.draw(screen)
+    ground_im.draw(screen)
+    gates_group.update()
+    gates_group2.update()
     pygame.display.flip()
     clock.tick(50)
 pygame.quit()
-
-
-def terminate():
-    pygame.quit()
-    sys.exit()
