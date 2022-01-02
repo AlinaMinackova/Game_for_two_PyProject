@@ -56,6 +56,17 @@ class Platform(pygame.sprite.Sprite):
         self.rect.y = y
 
 
+class Ground(pygame.sprite.Sprite):
+    def __init__(self, image, x, y):
+        super().__init__(ground_im, all_sprites)
+        image = load_image(image, -1)
+        self.image = image
+        self.rect = self.image.get_rect()
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect.x = x
+        self.rect.y = y
+
+
 Fon("forest.png")
 running = True
 play = True
