@@ -769,4 +769,3 @@ def level_4():
 def terminate():
     pygame.quit()
     sys.exit()
-#Алика
