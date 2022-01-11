@@ -7,7 +7,6 @@ import sqlite3
 from pygame.math import Vector2
 import random
 
-
 pygame.init()
 size = width, height = 750, 550
 screen_rect = (0, 0, width, height)
@@ -115,21 +114,21 @@ class Particle(pygame.sprite.Sprite):
 boys_left = [load_image('left.png'), load_image('left2.png'), load_image('left.png'),
              load_image('left2.png')]
 boys_right = [load_image('right.png'), load_image('right2.png'), load_image('right.png'),
-             load_image('right3.png')]
+              load_image('right3.png')]
 girl_left = [load_image('left_g.png'), load_image('left2_g.png'), load_image('left_g.png'),
              load_image('left2_g.png')]
 girl_right = [load_image('right_g.png'), load_image('right2_g.png'), load_image('right_g.png'),
-             load_image('right3_g.png')]
+              load_image('right3_g.png')]
 boys_up = [load_image('up_2.png'), load_image('up_1.png'), load_image('up_2.png'),
-             load_image('up_3.png')]
+           load_image('up_3.png')]
 girl_up = [load_image('up.png'), load_image('up3.png'), load_image('up.png'),
-             load_image('up2.png')]
+           load_image('up2.png')]
 cris_img = [load_image('cris.png'), load_image('cris2.png'), load_image('cris3.png'),
-             load_image('cris4.png'), load_image('cris5.png'), load_image('cris6.png'),
+            load_image('cris4.png'), load_image('cris5.png'), load_image('cris6.png'),
             load_image('cris7.png'), load_image('cris8.png')]
 cris2_img = [load_image('cris_2.png'), load_image('cris22.png'), load_image('cris23.png'),
              load_image('cris24.png'), load_image('cris25.png'), load_image('cris26.png'),
-            load_image('cris27.png'), load_image('cris28.png')]
+             load_image('cris27.png'), load_image('cris28.png')]
 water_img = [load_image('water.png'), load_image('water2.png'), load_image('water3.png'), load_image('water4.png'),
              load_image('water5.png'), load_image('water4.png'), load_image('water3.png'), load_image('water2.png'),
              load_image('water.png')]
@@ -138,7 +137,7 @@ fire_img = [load_image('fire.png'), load_image('fire2.png'), load_image('fire3.p
             load_image('fire9.png'), load_image('fire10.png'), load_image('fire11.png'), load_image('fire12.png'),
             load_image('fire13.png'), load_image('fire14.png'), load_image('fire15.png'), load_image('fire16.png')]
 dragon_left = [load_image('dragon.png', -1), load_image('dragon2.png', -1), load_image('dragon3.png', -1),
-             load_image('dragon4.png', -1), load_image('dragon5.png', -1), load_image('dragon6.png', -1),
+               load_image('dragon4.png', -1), load_image('dragon5.png', -1), load_image('dragon6.png', -1),
                load_image('dragon5.png', -1), load_image('dragon4.png', -1), load_image('dragon3.png', -1),
                load_image('dragon2.png', -1)]
 
@@ -1438,7 +1437,7 @@ def level_5():
     for i in list_cr_mn:
         cris2.append(Cris2("cris2.png", i[0], i[1]))
     list_platforms = [[0, 365], [80, 365], [160, 365], [240, 365], [320, 365], [420, 425], [510, 365], [590, 365],
-                      [670, 365],  [0, 510], [80, 510], [160, 510], [240, 510], [320, 510], [400, 510],
+                      [670, 365], [0, 510], [80, 510], [160, 510], [240, 510], [320, 510], [400, 510],
                       [480, 510], [560, 510], [640, 510], [720, 510], [320, 220], [400, 220], [480, 220],
                       [560, 220], [640, 220], [720, 220], [0, 70], [80, 70], [160, 70], [240, 70], [320, 70], [400, 70],
                       [500, 140], [170, 290], [30, 220]]
