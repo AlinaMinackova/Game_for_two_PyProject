@@ -254,6 +254,7 @@ class Fon(pygame.sprite.Sprite):
 
 def information():
     Mouse()
+    pygame.display.set_caption('In search of treasures: информация')
     OK_btn = Button(150, 50, (95, 158, 160), (0, 206, 209))
     intro_text = ["ПРАВИЛА ИГРЫ:", "",
                   "Во время прохождения вам предстоит управлять двумя персонажами.",
@@ -307,6 +308,7 @@ def information():
 
 def event_name():
     Mouse()
+    pygame.display.set_caption('In search of treasures: сохранение')
     ok_btn = Button(150, 50, (105, 105, 105), (186, 85, 211))
     play = True
     while True:
@@ -333,6 +335,7 @@ def event_name():
 
 def start_screen():
     global LEVEL_COUNT, SCORE, SCORE2, SCORE_UP, SCORE2_UP, SCORE_ALL
+    pygame.display.set_caption('In search of treasures: игра для двоих')
     LEVEL_COUNT = 0
     SCORE = 0
     SCORE2 = 0
@@ -382,6 +385,7 @@ def finish_screen():
                   "Очки второго игрока составили:", str(SCORE2_UP),
                   "Всего очков:", str(SCORE_ALL),
                   "Чтобы сохранить достижение, необходимо сохраниться"]
+    pygame.display.set_caption('In search of treasures: конец')
     Mouse()
     pygame.mixer.music.unpause()
     again_btn = Button(200, 50, (105, 105, 105), (154, 205, 50))
@@ -431,6 +435,7 @@ def finish_screen():
 
 def died_screen(level_count):
     global SCORE, SCORE2, LEVEL_COUNT, DISK_LEFT, DISK_RIGHT
+    pygame.display.set_caption('In search of treasures: смерть')
     pygame.mixer.music.pause()
     pygame.mixer.Sound.play(fall_sound)
     platform_ground.empty()
@@ -987,6 +992,7 @@ class Ladder(pygame.sprite.Sprite):
 def level():
     global SCORE, SCORE2, SCORE_ALL, SCORE_UP, SCORE2_UP
     pygame.mixer.music.unpause()
+    pygame.display.set_caption('In search of treasures: уровень 1')
     Fon("forest.png")
     Gates("gates2.png", 500, 30)
     Gates2("gates.png", 580, 30)
@@ -1079,6 +1085,7 @@ def level():
 def level_2():
     global SCORE, SCORE2, SCORE_ALL, SCORE_UP, SCORE2_UP
     pygame.mixer.music.unpause()
+    pygame.display.set_caption('In search of treasures: уровень 2')
     Fon("montain.png")
     Gates("gates2.png", 560, 30)
     Gates2("gates.png", 640, 30)
@@ -1189,6 +1196,7 @@ def level_2():
 def level_3():
     global SCORE, SCORE2, SCORE_ALL, SCORE_UP, SCORE2_UP
     pygame.mixer.music.unpause()
+    pygame.display.set_caption('In search of treasures: уровень 3')
     Fon("village.jpg")
     Gates("gates2.png", 0, 450)
     Gates2("gates.png", 650, 450)
@@ -1304,6 +1312,7 @@ def level_3():
 
 def level_4():
     global SCORE, SCORE2, SCORE_ALL, SCORE_UP, SCORE2_UP
+    pygame.display.set_caption('In search of treasures: уровень 4')
     enemy = Enemy(600, 60, projectiles)
     enemy_sprites.add(enemy)
     enemy = Enemy(600, 380, projectiles)
@@ -1413,6 +1422,7 @@ def level_4():
 
 def level_5():
     global SCORE, SCORE2, SCORE_ALL, SCORE_UP, SCORE2_UP
+    pygame.display.set_caption('In search of treasures: уровень 5')
     enemy = Enemy(600, 60, projectiles)
     enemy_sprites.add(enemy)
     enemy = Enemy(600, 360, projectiles)
